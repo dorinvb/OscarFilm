@@ -1,0 +1,83 @@
+:root {
+    --bg-color: #0f1014;
+    --card-bg: #1a1d24;
+    --accent-color: #f5c518; /* Auriu Oscar */
+    --text-color: #ffffff;
+    --text-muted: #9ca3af;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+header {
+    padding: 20px 5%;
+    background: rgba(15, 16, 20, 0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+.logo { font-size: 1.5rem; font-weight: 700; letter-spacing: 2px; }
+.logo span { color: var(--accent-color); }
+
+#year-selector { margin-top: 15px; display: flex; gap: 15px; overflow-x: auto; padding-bottom: 5px; }
+.year-pill { 
+    padding: 8px 20px; border-radius: 20px; background: var(--card-bg); 
+    cursor: pointer; transition: 0.3s; white-space: nowrap;
+}
+.year-pill.active { background: var(--accent-color); color: black; font-weight: bold; }
+
+.row-container { padding: 20px 5%; }
+.row-title { font-size: 1.2rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+}
+
+/* Stilul Trakt.tv pentru carduri */
+.movie-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--card-bg);
+}
+
+.movie-card:hover {
+    transform: scale(1.1);
+    z-index: 10;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+}
+
+.movie-card img { width: 100%; display: block; border-radius: 8px; }
+
+.movie-badge {
+    position: absolute;
+    top: 10px; right: 10px;
+    background: rgba(0,0,0,0.7);
+    padding: 2px 6px; border-radius: 4px; font-size: 0.7rem;
+    color: var(--accent-color); border: 1px solid var(--accent-color);
+}
+
+/* Modal Detalii */
+.modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9); display: none; z-index: 1000;
+    overflow-y: auto;
+}
+.close-modal { position: absolute; top: 20px; right: 30px; font-size: 40px; cursor: pointer; }
+
+/* Responsivitate telefon */
+@media (max-width: 600px) {
+    .movie-grid { grid-template-columns: repeat(2, 1fr); }
+}
